@@ -98,7 +98,7 @@ const Profile =()=>{
         </div>
         <div className="file-field input-field" style={{margin:"10px"}}>
               <div className="btn #1976d2 blue darken-2">
-                  <span>Up5date Pic</span>
+                  <span>Update Pic</span>
             
                   <input type="file"   
                     // if we do console.log on event.target.files we will get an array of imagefiles containing details of 
