@@ -1,17 +1,17 @@
 import React from 'react'
 import {Link, useNavigate } from 'react-router-dom'
-import {UserContext} from '../../App'
+
 import { useState, useContext } from 'react'
 import M from 'materialize-css'
 
-const Signin =()=>{
+const Reset =()=>{
 
-const {state, dispatch} = useContext(UserContext)
+
 
     const navigate= useNavigate()
   
     const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+
     
     const PostData =()=>{
         //fetch to make a network request, has second argument-object which contain method, headers, body-which we need to stringify
@@ -19,36 +19,26 @@ const {state, dispatch} = useContext(UserContext)
             M.toast({html: "Invalid Email", classes:"#d32f2f red darken-2"})
             return
         }
-        fetch("/signin",{
+        fetch("/reset-password",{
             method:"post",
             headers:{
                 "Content-Type":"application/json"
             },
             body:JSON.stringify({
-                
-                password,
-                email
+            email
             })
         }).then(res=>res.json())
             .then(data=>{
-                console.log(data)
+           
                 if(data.error){
                     M.toast({html: data.error, classes:"#d32f2f red darken-2"})
                 }
                 else{
-                    //to save the token to local storage
-                    localStorage.setItem("jwt", data.token)
-                    //stringify is needed as it was a (object-user) but in localstorage we can only store string
-                    localStorage.setItem("user", JSON.stringify(data.user))
-                      //dispatch takes action creators of type user nd payload data.user , go to our reducer nd our state will updated state
-                    dispatch({type:"USER", payload:data.user})
-                    M.toast({html: "signed in success", classes:"#00c853 green accent-4" })
-                    navigate('/') 
+                    M.toast({html: data.message, classes:"#00c853 green accent-4" })
+                    navigate('/signin') 
                 }
-            }).catch(err=>{
-                console.log(err);
             })
-    }
+        }
     
    return(
         <div className="mycard">
@@ -60,25 +50,15 @@ const {state, dispatch} = useContext(UserContext)
                 value={email}
                 onChange={(e)=>setEmail(e.target.value)}
                 />
-                 <input
-                type="password"
-                placeholder='password'
-                value={password}
-                onChange={(e)=>setPassword(e.target.value)}
-                />
+           
                   <button className="btn waves-effect waves-light #1976d2 blue darken-2"
                   onClick={()=>PostData()}>
-                       Login
+                       reset password
                     </button>
-                    <h5>
-                        <Link to="/signup">Dont have an account ?</Link>
-                    </h5>
-                    <h6>
-                        <Link to="/reset">Forgot Password ?</Link>
-                    </h6>
+                   
             </div>
         </div>
     )
 }
 
-export default Signin
+export default Reset

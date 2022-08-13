@@ -31,7 +31,7 @@ const Home =()=>{
                 return item
             })
             setData(newData)
-            console.log(result)
+         
         })
     
 }

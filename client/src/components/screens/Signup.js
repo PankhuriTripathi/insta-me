@@ -87,7 +87,7 @@ const PostData =()=>{
     return(
         <div className="mycard">
             <div class='card auth-card input-field'>
-                <h2>Instagram</h2>
+                <h2>Insta-me</h2>
                 <input
                 type="text"
                 placeholder='name'

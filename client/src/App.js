@@ -3,7 +3,7 @@ import { createContext, useEffect, useReducer, useContext } from "react" // as w
 // whenever our state change component will re render , used with context
 import Navbar from "./components/Navbar.js"
 import './App.css'
-import {BrowserRouter,Routes,Route, useNavigate} from 'react-router-dom'
+import {BrowserRouter,Routes,Route, useNavigate, useLocation} from 'react-router-dom'
 import Home from './components/screens/Home'
 import Profile from './components/screens/Profile'
 import Signin from './components/screens/Signin'
@@ -12,7 +12,8 @@ import CreatePost from './components/screens/CreatePost'
 import {reducer, initialState} from './reducers/userReducer'
 import UserProfile from './components/screens/UserProfile'
 import SubscribedUserPost from "./components/screens/SubscribedUserPost.js"
-
+import Reset from './components/screens/Reset'
+import Newpassword from './components/screens/Newpassword'
 
 
 export const UserContext = createContext()
@@ -20,6 +21,7 @@ export const UserContext = createContext()
 const Routing = ()=>{
 
 const navigate = useNavigate()
+const location = useLocation();
 //app.js is tthe first component loaded in application , so we pass an empty array in useeffect as i want it to run only for the first
 //time when component mounts. 
 const {state, dispatch}= useContext(UserContext)
@@ -31,13 +33,14 @@ useEffect(()=>{
 
    
   }else{
+    if(!location.pathname.startsWith('/reset'))
     navigate('/signin')
   }
 },[])
 
 return (
   <Routes>
-  <Route path='/'element={<Home />} />
+  <Route exact path='/'element={<Home />} />
  
   <Route exact path='/profile' element ={<Profile />} />
   
@@ -48,9 +51,14 @@ return (
 
   <Route path='/create' element={ <CreatePost/>} />
 
-  <Route path='/profile/:userid' element={ <UserProfile/>} />
+  <Route exact path='/profile/:userid' element={ <UserProfile/>} />
 
+  <Route exact path='/reset' element={ <Reset/>} />
+
+  <Route path='/reset/:token' element={ <Newpassword/>} />
+  
   <Route path='/myfollowingpost' element={ <SubscribedUserPost/>} />
+ 
 
   </Routes>
 )

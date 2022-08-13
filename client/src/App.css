@@ -49,3 +49,12 @@ a{
 .material-icons:hover{
   cursor: pointer;
 }
+
+.collection{
+  display: flex;
+  flex-direction: column;
+}
+
+.collection-item{
+  width: 100%;
+}
