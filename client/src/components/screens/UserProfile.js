@@ -96,7 +96,7 @@ const Profile =()=>{
    borderBottom: "1px solid grey"
 }}>
     <div>
-        <img style={{width:"160px", height:"160px", borderRadius:"80px"}}
+        <img style={{width:"154px", height:"160px", borderRadius:"80px"}}
         src={userProfile.user.pic} />
     </div>
 
@@ -104,7 +104,7 @@ const Profile =()=>{
     <h4>{userProfile.user.name}</h4>
     <h4>{userProfile.user.email}</h4>
 
-     <div style={{display:"flex", justifyContent:"space-between", width: "136%"}}>
+     <div style={{display:"flex", justifyContent:"space-between", width: "100%"}}>
       <h6>{userProfile.posts.length} posts</h6>
       <h6>{userProfile.user.followers.length} followers</h6>
       <h6>{userProfile.user.following.length} following</h6>
@@ -120,7 +120,7 @@ const Profile =()=>{
                        Follow
                     </button>
                     :
-                    <button style={{margin:"10px"}} className="btn waves-effect waves-light #1976d2 blue darken-2"
+                    <button style={{margin:"8px"}} className="btn waves-effect waves-light #1976d2 blue darken-2"
               //calling post data
                   onClick={()=>unfollowUser()}
                   >
