@@ -11,8 +11,6 @@ const sendgridTransport = require("nodemailer-sendgrid-transport")
 const requireLogin= require('../middleware/requireLogin')
 const {SENDGRID_API, EMAIL} = require('../config/keys')
 
-//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
-
 const transporter = nodemailer.createTransport(sendgridTransport({
     auth:{
         api_key:SENDGRID_API,
@@ -20,10 +18,6 @@ const transporter = nodemailer.createTransport(sendgridTransport({
     }
 }))
 
-
-// router.get("/protected",requireLogin, (req,res)=>{
-//     res.send("hey user")
-// })
 router.post('/signup', (req,res)=>{
     const {name, email, password,pic}= req.body //destructuring our req.body
     if(!name || !password || !email)
@@ -37,11 +31,12 @@ router.post('/signup', (req,res)=>{
        bcrypt.hash(password,12)
        .then(hashedpassword=>{
         const user =new User({
-            email:email, //can to condensed to just email
+            email:email, //can be condensed to just email
             password:hashedpassword,
             name,
             pic
         })
+        
         user.save()
         .then(user=>{
             transporter.sendMail({
@@ -59,6 +54,7 @@ router.post('/signup', (req,res)=>{
         .catch(err=>{
             console.log(err)
         })
+
        })
         
     })

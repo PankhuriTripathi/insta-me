@@ -7,15 +7,12 @@ import M from 'materialize-css'
 const Signin =()=>{
 
 const {state, dispatch} = useContext(UserContext)
-
-    const navigate= useNavigate()
-  
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+const navigate= useNavigate()
+const [email, setEmail] = useState("")
+const [password, setPassword] = useState("")
     
     const PostData =()=>{
-        //fetch to make a network request, has second argument-object which contain method, headers, body-which we need to stringify
-        if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
+       if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
             M.toast({html: "Invalid Email", classes:"#d32f2f red darken-2"})
             return
         }

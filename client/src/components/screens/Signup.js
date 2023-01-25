@@ -4,7 +4,7 @@ import { useState } from 'react'
 import M from 'materialize-css'
 
 const Signup =()=>{
-    const navigate= useNavigate()
+const navigate= useNavigate()
 const [name, setName] = useState("")
 const [email, setEmail] = useState("")
 const [password, setPassword] = useState("")
@@ -23,13 +23,10 @@ const uploadPic = ()=>{
         // we gave insta-clone name to cloudinary
         data.append("upload_preset", "insta-clone")
         data.append("cloud_name", "jjkaisen")
-    
         //make ntwk request
-      //CLOUDINARY_URL=cloudinary://615531475567582:eSyQuCMUzXFC7tPswyE8_Zj5ooY@jjkaisen
-    
+       //CLOUDINARY_URL=cloudinary://615531475567582:eSyQuCMUzXFC7tPswyE8_Zj5ooY@jjkaisen
       //uploading image to cloudinary
-    
-        fetch("https://api.cloudinary.com/v1_1/jjkaisen/image/upload", {
+         fetch("https://api.cloudinary.com/v1_1/jjkaisen/image/upload", {
             method:"post",
             body:data
         }).then(res=>res.json())
